@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
+import AddMovieForm from './components/AddMovie';
 
 function App() {
   const [moviesList, setMoviesList] = useState([]);
@@ -43,11 +44,12 @@ function App() {
   useEffect(()=>{
     fetchMoviesList();
   },[])
+  // console.log("re render parent ")
   return (
     <React.Fragment>
+      <AddMovieForm/>
       <section>
         {error ? <button onClick={()=>setError(null)}>Cancel</button>: <button onClick={fetchMoviesList}>Fetch Movies</button> }
-        
       </section>
       <section>
         {isLoading ? <div>Loading...</div> :

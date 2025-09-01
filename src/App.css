@@ -27,3 +27,23 @@ button:active {
   background-color: #460897;
   border-color: #460897;
 }
+
+.input-css{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;  
+  margin: 15px 0px ;
+  
+
+}
+.input-css label{
+  font-weight: bold;
+  text-align: start;
+
+}
+.input-css input, textarea{
+  padding: 5px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid gray;
+}

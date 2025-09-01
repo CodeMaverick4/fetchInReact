@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -8,10 +8,10 @@ function App() {
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchMoviesList = async () => {
+  const fetchMoviesList = useCallback(async () => {
     try {
       setIsloading(true);
-      const response = await fetch("https://swapi.py4e.com/api/film/");
+      const response = await fetch("https://swapi.py4e.com/api/films/");
       if(!response.ok){
         throw new Error("Something went wrong.");
       }
@@ -24,7 +24,7 @@ function App() {
       setIsloading(false);
       console.log(err)
     }
-  };
+  },[]);
 
   useEffect(() => {
     let fetchInterval      
@@ -40,6 +40,9 @@ function App() {
     return ()=> clearInterval(fetchInterval)
   }, [error])
 
+  useEffect(()=>{
+    fetchMoviesList();
+  },[])
   return (
     <React.Fragment>
       <section>
